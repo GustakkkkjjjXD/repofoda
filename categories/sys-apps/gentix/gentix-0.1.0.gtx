@@ -1,0 +1,51 @@
+[package]
+name        = "gentix"
+category    = "sys-apps"
+version     = "0.1.0"
+revision    = 0
+slot        = "0"
+license     = "MIT"
+homepage    = "https://github.com/gusta/gentix"
+description = "Gerenciador de pacotes do Anvil Chimera Linux (binário + source, imperativo + declarativo)"
+maintainer  = "gusta"
+
+[source]
+type = "git"
+url  = "https://github.com/gusta/gentix.git"
+
+[build]
+system  = "cargo"
+depends = []
+build_depends = [
+  "dev-lang/rust",
+  "dev-util/pkgconf",
+  "dev-libs/openssl",   # runtime do native-tls
+]
+
+[use]
+default   = []
+available = []
+
+[[hooks]]
+phase = "build"
+run   = "cargo build --release --workspace"
+
+[[hooks]]
+phase = "install"
+run   = """
+mkdir -p ${D}/usr/bin
+cp target/release/gentix ${D}/usr/bin/gentix
+cp target/release/anvil ${D}/usr/bin/anvil
+"""
+
+[runtime]
+provides  = ["gentix", "anvil"]
+conflicts = []
+replaces  = []
+
+[integrity]
+files_manifest = "auto"
+
+# Nota: o próprio Gentix não declara [service] — ele não é um daemon,
+# é uma CLI. Bwrap e libssl entram como dependências de runtime
+# separadas (pacote próprio no tree), não aqui dentro.
