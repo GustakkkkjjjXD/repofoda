@@ -1,0 +1,28 @@
+[package]
+name        = "dwm"
+category    = "x11-wm"
+version     = "6.8"
+slot        = "0"
+license     = "MIT"
+homepage    = "https://dwm.suckless.org"
+description = "Gerenciador de janelas dinâmico e minimalista pra X11"
+
+[source]
+type   = "tarball"
+url    = "https://raw.githubusercontent.com/GustakkkkjjjXD/repofoda/main/categories/x11-wm/dwm/dist/dwm-6.8.tar.gz"
+sha256 = "COLOQUE_AQUI"
+
+[build]
+system  = "make"
+depends = []
+
+[[hooks]]
+phase = "build"
+run   = "make PREFIX=/usr"
+
+[[hooks]]
+phase = "install"
+run   = "make install PREFIX=/usr DESTDIR=${D}"
+
+[runtime]
+provides = ["dwm"]
