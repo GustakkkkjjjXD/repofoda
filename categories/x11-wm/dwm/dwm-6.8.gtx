@@ -10,7 +10,7 @@ description = "Gerenciador de janelas dinâmico e minimalista pra X11"
 [source]
 type   = "tarball"
 url    = "https://raw.githubusercontent.com/GustakkkkjjjXD/repofoda/main/categories/x11-wm/dwm/dist/dwm-6.8.tar.gz"
-sha256 = "COLOQUE_AQUI"
+sha256 = "caf140e5a52b5adc100e4586e835a009f005509f7c3b5e8faea65717f1bf25aa"
 
 [build]
 system  = "make"
