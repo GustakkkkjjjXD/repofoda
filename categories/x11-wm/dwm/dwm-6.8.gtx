@@ -18,11 +18,11 @@ depends = []
 
 [[hooks]]
 phase = "build"
-run   = "make PREFIX=/usr"
+run   = "cd dwm-6.8 && make PREFIX=/usr"
 
 [[hooks]]
 phase = "install"
-run   = "make install PREFIX=/usr DESTDIR=${D}"
+run   = "cd dwm-6.8 && make install PREFIX=/usr DESTDIR=${D}"
 
 [runtime]
 provides = ["dwm"]
